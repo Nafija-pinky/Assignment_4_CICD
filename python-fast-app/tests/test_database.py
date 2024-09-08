@@ -1,6 +1,6 @@
+import pytest
 import sys
 import os
-import pytest
 
 # Add the path to the python-fast-app directory
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../python-fast-app')))
@@ -12,7 +12,7 @@ def test_connect_to_db():
     assert result is not None  # Modify based on expected outcome
 
 def test_fetch_data():
-    expected_data = ...  # Define what you expect from fetch_data
+    expected_data = ...  # Define the expected data
     result = fetch_data()  # Replace with actual function call and parameters
-    assert result == expected_data  # Replace with actual expected data
+    assert result == expected_data  # Modify based on actual expected data
 

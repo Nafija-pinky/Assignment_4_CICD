@@ -1,7 +1,6 @@
-
+import pytest
 import sys
 import os
-import pytest
 
 # Add the path to the python-fast-app directory
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../python-fast-app')))
@@ -15,7 +14,6 @@ def test_start_server():
 
 def test_process_request():
     request_data = ...  # Define the request data to be used
-    expected_response = ...  # Define the expected response
     result = process_request(request_data)  # Replace with actual function call and parameters
-    assert result == expected_response  # Modify based on expected response
+    assert result == expected_response  # Modify based on actual expected response
 
