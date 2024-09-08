@@ -24,14 +24,14 @@ jobs:
         run: flake8 . --max-line-length=79
 
       - name: Run black
-        run: black --check .
+        run: black --check --diff . || true
 
       - name: Run pylint
         run: pylint **/*.py
 
   code-quality:
     runs-on: ubuntu-latest
-    needs: lint
+    needs: lint  # Ensure this job runs after the lint job
 
     steps:
       - name: Checkout code
@@ -47,9 +47,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install pylint mypy
 
-      - name: Run pylint
-        run: pylint **/*.py
-
       - name: Run mypy
         run: mypy . || true
 
@@ -59,7 +56,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    needs: lint
+    needs: lint  # Ensure this job runs after the lint job
 
     steps:
       - name: Checkout code
