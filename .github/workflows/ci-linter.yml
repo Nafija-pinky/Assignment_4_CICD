@@ -18,13 +18,14 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install flake8 black pylint
+          pip install -r requirements.txt  # Install all dependencies from requirements.txt
+          pip install black flake8 pylint  # Install additional tools
 
       - name: Run flake8
         run: flake8 . --max-line-length=79
 
       - name: Run black
-        run: black --check --diff . || true
+        run: black --check --diff . || true  # Modify this line to prevent job failure
 
       - name: Run pylint
         run: pylint **/*.py
@@ -45,7 +46,11 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
+          pip install -r requirements.txt
           pip install pylint mypy
+
+      - name: Run pylint
+        run: pylint **/*.py
 
       - name: Run mypy
         run: mypy . || true
@@ -70,6 +75,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
+          pip install -r requirements.txt  # Ensure all dependencies are installed
           pip install pytest
 
       - name: Run unit tests
