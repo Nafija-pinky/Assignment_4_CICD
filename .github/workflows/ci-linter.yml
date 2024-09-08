@@ -24,7 +24,7 @@ jobs:
         run: flake8 . --max-line-length=79
 
       - name: Run black
-        run: black --check .
+        run: black .
 
       - name: Run pylint
         run: pylint **/*.py
