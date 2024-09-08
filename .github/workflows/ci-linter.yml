@@ -1,4 +1,3 @@
-
 name: CI
 
 on: [push, pull_request]
@@ -14,7 +13,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9'  # Change this to your desired Python version
+          python-version: '3.9'
 
       - name: Install dependencies
         run: |
@@ -25,14 +24,14 @@ jobs:
         run: flake8 . --max-line-length=79
 
       - name: Run black
-        run: black --check . || true  # Modify this line to always succeed
+        run: black --check .
 
       - name: Run pylint
         run: pylint **/*.py
 
   code-quality:
     runs-on: ubuntu-latest
-    needs: lint  # Ensure this job runs after the lint job
+    needs: lint
 
     steps:
       - name: Checkout code
@@ -41,7 +40,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9'  # Change to your desired version
+          python-version: '3.9'
 
       - name: Install dependencies
         run: |
@@ -56,12 +55,11 @@ jobs:
 
       - name: Run additional quality checks
         run: |
-          # Add any additional quality checks here, if needed
           echo "Additional code quality checks can be added here."
 
   test:
     runs-on: ubuntu-latest
-    needs: lint  # Ensure this job runs after the lint job
+    needs: lint
 
     steps:
       - name: Checkout code
