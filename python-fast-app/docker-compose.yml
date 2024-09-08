@@ -1,3 +1,4 @@
+
 version: "3.3"
 
 networks:
@@ -8,15 +9,15 @@ services:
     py-app:
         image: "nahiyanswe/python-fast-app:v2"
         env_file:
-            - $PWD/.env
+            - .env
         container_name: py-app
         restart: always
         ports:
             - "${APP_PORT}:8000"
         command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
         volumes:
-            - $PWD/database.py:/pyapp/database.py
-            - $PWD/main.py:/pyapp/main.py
+            - ./database.py:/pyapp/database.py
+            - ./main.py:/pyapp/main.py
         networks:
             - server-bridge
 
@@ -31,9 +32,9 @@ services:
             MYSQL_DATABASE: "${DB_NAME}"
             MYSQL_ALLOW_EMPTY_PASSWORD: "no"
         volumes:
-            - "$PWD/mysql/db:/var/lib/mysql"
-            - "$PWD/mysql/log:/var/log/mysql"
-            - "$PWD/movies.sql:/docker-entrypoint-initdb.d/movies.sql"
+            - ./mysql/db:/var/lib/mysql
+            - ./mysql/log:/var/log/mysql
+            - ./movies.sql:/docker-entrypoint-initdb.d/movies.sql
         networks:
             - server-bridge
 
