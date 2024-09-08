@@ -2,17 +2,16 @@ import pytest
 import sys
 import os
 
-# Add the path to the python-fast-app directory
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../python-fast-app')))
+# Add the parent directory of the 'tests' directory to sys.path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from database import connect_to_db, fetch_data  # Ensure these are the correct function names
+from main import start_server, process_request  # Ensure these are the correct function names
 
-def test_connect_to_db():
-    result = connect_to_db()  # Assuming it returns a connection object or status
-    assert result is not None  # Modify based on expected outcome
+def test_start_server():
+    result = start_server()  # Assuming it starts a server and returns a status
+    assert result == expected_status  # Modify based on expected outcome
 
-def test_fetch_data():
-    expected_data = ...  # Define the expected data
-    result = fetch_data()  # Replace with actual function call and parameters
-    assert result == expected_data  # Modify based on actual expected data
+def test_process_request():
+    result = process_request(request_data)  # Replace with actual function call and parameters
+    assert result == expected_response  # Modify based on actual expected response
 
